@@ -10,6 +10,7 @@ import {
   TitleCasePipe,
   UpperCasePipe,
 } from '@angular/common';
+import { interval, map, tap } from 'rxjs';
 
 //2 clients
 const client1 = {
@@ -81,14 +82,14 @@ export default class UncommonPageComponent {
 
   deleteClient() {
     this.clients.update((prev) => prev.slice(1));
-  }
+  };
 
   //keyValue Pipe
   profile = {
     name: 'Milton',
     age: 36,
     addres: 'Ottawa, Canada',
-  }
+  };
 
   // Async Pipe
   promiseValue: Promise<string> = new Promise((resolve, reject)=> {
@@ -100,5 +101,13 @@ export default class UncommonPageComponent {
 
     }, 3500);
 
-  })
+  });
+
+  myObservableTimer = interval(2000)
+    .pipe(
+    map((value)=> value +1),
+    tap((value) => console.log('tap:', value))
+    
+  );
+
 }
