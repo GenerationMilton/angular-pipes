@@ -1,5 +1,6 @@
 import {  Component, signal } from '@angular/core';
 import { ToggleCasePipe } from '../../pipes/toggle-case.pipe';
+import { heroes } from '../../data/hero.data';
 
 @Component({
   selector: 'app-custom-page',
@@ -12,4 +13,6 @@ export default class CustomPageComponent {
 
     upperCase = signal(true);
 
+    //objeto con el arreglo de heroes
+    heroes = signal(heroes);
  }
