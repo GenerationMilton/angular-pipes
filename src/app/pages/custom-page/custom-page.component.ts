@@ -1,24 +1,35 @@
-import {  Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ToggleCasePipe } from '../../pipes/toggle-case.pipe';
 import { heroes } from '../../data/hero.data';
-import { canFlyPipe } from "../../pipes/canfly.pipe";
+import { canFlyPipe } from '../../pipes/canfly.pipe';
 import { heroColorPipe } from '../../pipes/hero-color.pipe';
 import { HeroTextColorPipe } from '../../pipes/hero-text-color.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
+import { HeroSortByPipe } from '../../pipes/hero-sort-by.pipe';
+import { Hero } from '../../interfaces/hero.interface';
 
 @Component({
   selector: 'app-custom-page',
-  imports: [ToggleCasePipe, canFlyPipe, heroColorPipe, HeroTextColorPipe, TitleCasePipe, HeroCreatorPipe],
+  imports: [
+    ToggleCasePipe,
+    canFlyPipe,
+    heroColorPipe,
+    HeroTextColorPipe,
+    TitleCasePipe,
+    HeroCreatorPipe,
+    HeroSortByPipe
+  ],
   templateUrl: './custom-page.component.html',
 })
 export default class CustomPageComponent {
+  name = signal('Milton Muñoz');
 
-    name = signal('Milton Muñoz');
+  upperCase = signal(true);
 
-    upperCase = signal(true);
+  //objeto con el arreglo de heroes
+  heroes = signal(heroes);
 
-    //objeto con el arreglo de heroes
-    heroes = signal(heroes);
+  sortBy = signal<keyof Hero | null>(null)
 
- }
+}
